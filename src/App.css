@@ -36,3 +36,585 @@
     transform: rotate(360deg);
   }
 }
+
+/* Comp1 CSS */
+.bg-dark{
+  background: black;
+}
+
+.text-light{
+  color: white;
+}
+
+
+/* Comp2 CSS */
+.text-justify{
+  width: 250px;
+  text-align: right;
+}
+/* form css starts */
+.map-embed {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      border: none;
+    }
+
+    .section-img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .section-title {
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .section-padding {
+      padding: 60px 0;
+    }
+    /* from css ends */
+
+    /* navbar css starts */
+    #bgcolor{
+      background-color: #334d4e;
+      height:70px;
+      font-size:larger;
+      font-style: italic;
+      font-weight: bold;
+    }
+    /* navbar css ends */
+
+    /* banner start */
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #0f0f0f;
+  color: #ffffff;
+}
+
+.banner {
+  height: 100vh;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.banner-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #00ffe7;
+}
+
+.banner-content h1 span {
+  color: #ffae00;
+}
+
+.banner-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #cfd8dc;
+}
+
+.btn {
+  padding: 12px 30px;
+  background: #ffae00;
+  color: #0f0f0f;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #ffd54f;
+}
+/* banner ends */
+
+/* banner section 2 */
+.features {
+  background-color: #1a1a1a;
+  padding: 80px 20px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.features .section-title {
+  font-size: 2.5rem;
+  color: #00ffe7;
+  margin-bottom: 50px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.feature-item {
+  background: #2c2c2c;
+  padding: 30px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-8px);
+  background: #333333;
+}
+
+.feature-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #ffae00;
+}
+
+.feature-item p {
+  font-size: 1rem;
+  color: #d0d0d0;
+}
+.market-stats {
+  background-color: #121212;
+  padding: 80px 20px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.market-stats .section-title {
+  font-size: 2.5rem;
+  color: #00ffe7;
+  margin-bottom: 50px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  background: #1e1e1e;
+  border: 1px solid #2a2a2a;
+  padding: 25px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  border-color: #00ffe7;
+  transform: translateY(-6px);
+}
+
+.stat-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #ffae00;
+}
+
+.stat-card .price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.stat-card .change {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.change.up {
+  color: #00ff7f;
+}
+
+.change.down {
+  color: #ff4d4d;
+}
+/* banner section 2 ends */
+
+/* Getstart section */
+/* Small banner for subpages */
+.small-banner {
+  height: 50vh;
+  background: linear-gradient(to right, #1e1e1e, #333333);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.onboarding {
+  background-color: #1a1a1a;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.step {
+  background-color: #2c2c2c;
+  padding: 30px;
+  border-radius: 12px;
+  color: #d0d0d0;
+  transition: transform 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-6px);
+}
+
+.step h3 {
+  color: #ffae00;
+  margin-bottom: 10px;
+}
+/* ends */
+
+/* getstart2  */
+.team {
+  background-color: #181818;
+  padding: 80px 20px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.team .section-title {
+  font-size: 2.5rem;
+  color: #00ffe7;
+  margin-bottom: 50px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.team-member {
+  background: #262626;
+  border-radius: 12px;
+  padding: 25px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.team-member:hover {
+  background: #2f2f2f;
+  transform: translateY(-6px);
+}
+
+.team-member img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #00ffe7;
+}
+
+.team-member h3 {
+  font-size: 1.2rem;
+  color: #ffae00;
+  margin-bottom: 5px;
+}
+
+.team-member p {
+  font-size: 0.95rem;
+  color: #cccccc;
+}
+/* ends */
+
+/* about css start */
+.crypto-coins {
+  background-color: #101010;
+  padding: 80px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.crypto-coins .section-title {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: #00ffe7;
+}
+
+.coin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.coin-card {
+  background: #1c1c1c;
+  padding: 25px;
+  border-radius: 12px;
+  transition: 0.3s ease;
+  border: 1px solid #2a2a2a;
+}
+
+.coin-card:hover {
+  border-color: #00ffe7;
+  transform: translateY(-6px);
+}
+
+.coin-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.coin-header img {
+  width: 32px;
+  height: 32px;
+}
+
+.coin-header h3 {
+  font-size: 1.2rem;
+  color: #ffae00;
+}
+
+.coin-header span {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.coin-card .price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #cfd8dc;
+  margin-bottom: 10px;
+}
+
+.chart-bar {
+  width: 100%;
+  height: 6px;
+  background-color: #333;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.chart-line {
+  height: 100%;
+  border-radius: 3px;
+}
+
+.chart-line.up {
+  background-color: #00ff7f;
+}
+
+.chart-line.down {
+  background-color: #ff4d4d;
+}
+
+.coin-card .change {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.change.up {
+  color: #00ff7f;
+}
+
+.change.down {
+  color: #ff4d4d;
+}
+/* ends */
+
+/* top coins css */
+.top-ten-coins {
+  background-color: #121212;
+  padding: 80px 20px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.top-ten-coins .section-title {
+  font-size: 2.5rem;
+  color: #00ffe7;
+  margin-bottom: 50px;
+}
+
+.top-ten-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.coin-item {
+  background: #1c1c1c;
+  border: 1px solid #2c2c2c;
+  border-left: 5px solid #00ff7f;
+  padding: 20px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.coin-item:hover {
+  transform: translateY(-6px);
+  border-left-color: #ffae00;
+}
+
+.coin-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.coin-info img {
+  width: 40px;
+  height: 40px;
+}
+
+.coin-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #ffae00;
+}
+
+.coin-info .change {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 1.4rem;
+  color: #cfd8dc;
+  margin-top: 10px;
+}
+
+.change.up {
+  color: #00ff7f;
+}
+/* ends */
+
+/* buy and sell section  */
+/* Reset & Layout */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0a0a0a;
+  color: #fff;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: #00ffe7;
+}
+
+/* Buy & Sell Grid */
+.buy-sell {
+  padding: 80px 0;
+  background-color: #101010;
+}
+
+.buy-sell-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+/* Card Styles */
+.buy-box, .sell-box {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #2a2a2a;
+}
+
+.buy-box h3, .sell-box h3 {
+  color: #ffae00;
+  margin-bottom: 20px;
+}
+
+/* Forms */
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+form select,
+form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 8px;
+  background: #2c2c2c;
+  color: #fff;
+}
+
+form input::placeholder {
+  color: #aaa;
+}
+
+.estimate {
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  color: #00ff7f;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background: #00ffe7;
+  color: #000;
+  font-weight: bold;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #00dabd;
+}
+
+.btn.alt {
+  background: #ffae00;
+}
+
+.btn.alt:hover {
+  background: #ffc94d;
+}
+/* ends */
