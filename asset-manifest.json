@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/CryptoX/static/css/main.452476fd.css",
+    "main.js": "/CryptoX/static/js/main.19a99592.js",
+    "static/js/453.28c29a20.chunk.js": "/CryptoX/static/js/453.28c29a20.chunk.js",
+    "index.html": "/CryptoX/index.html",
+    "main.452476fd.css.map": "/CryptoX/static/css/main.452476fd.css.map",
+    "main.19a99592.js.map": "/CryptoX/static/js/main.19a99592.js.map",
+    "453.28c29a20.chunk.js.map": "/CryptoX/static/js/453.28c29a20.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.452476fd.css",
+    "static/js/main.19a99592.js"
+  ]
+}
