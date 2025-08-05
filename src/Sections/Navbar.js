@@ -25,12 +25,12 @@ let Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-white" to="/cryptos">
+                <Link className="nav-link text-white" to="/#/cryptos">
                   Cryptos
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-white" to="/contact">
+                <Link className="nav-link text-white" to="/#/contact">
                   Contact
                 </Link>
               </li>
