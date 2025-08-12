@@ -1,17 +1,20 @@
+import { Link } from "react-router-dom";
+
 let Banner = () => {
   return (
     <>
-      <section className="banner">
-        <div className="banner-content">
-          <h1>
-            Welcome to <span>CryptoX Exchange</span>
-          </h1>
-          <p>Your Gateway to the Future of Decentralized Finance</p>
-          <a href="/start" className="btn">
-            Get Started
-          </a>
-        </div>
-      </section>
+     <section className="banner">
+  <div className="banner-overlay"></div>
+  <div className="banner-content animate__fade-in">
+    <h1>
+      Welcome to <span>CryptoX Exchange</span>
+    </h1>
+    <p>Your Gateway to the Future of Decentralized Finance</p>
+    <Link to ="/start" className="btn animate__bounce-in">
+      Get Started
+    </Link>
+  </div>
+</section>
 
       {/*  Buy & Sell Section */}
       <section className="buy-sell">

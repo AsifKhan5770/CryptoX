@@ -6,7 +6,7 @@ let Form = () => {
           {/* eslint-disable-next-line */}
           <iframe
             class="map-embed"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.185002370868!2d-122.41941568468186!3d37.7749297797599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808c1b5d6f4b%3A0x8e3a48a9c3f177e3!2sSan%20Francisco!5e0!3m2!1sen!2sus!4v1618952194024!5m2!1sen!2sus"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113911.20573097566!2d80.94251274999999!3d26.848692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd991f32b16b%3A0x93ccba8909978be7!2sLucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1755007810455!5m2!1sen!2sin"
             allowfullscreen=""
             loading="lazy"
           ></iframe>

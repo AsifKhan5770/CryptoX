@@ -1,5 +1,6 @@
 import Banner from "../Sections/Banner.js";
 import Cards from "../Sections/Cards.js";
+import Founder from "../Sections/Founder.js";
 import Livemarket from "../Sections/Livemarket.js";
 
 let Home = () => {
@@ -8,6 +9,7 @@ let Home = () => {
       <Banner />
       <Cards />
       <Livemarket />
+      <Founder/>
     </>
   );
 };
