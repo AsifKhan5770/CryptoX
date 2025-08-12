@@ -10,7 +10,7 @@ let Banner = () => {
       Welcome to <span>CryptoX Exchange</span>
     </h1>
     <p>Your Gateway to the Future of Decentralized Finance</p>
-    <Link to ="#/start" className="btn animate__bounce-in">
+    <Link to ="/start" className="btn animate__bounce-in">
       Get Started
     </Link>
   </div>
