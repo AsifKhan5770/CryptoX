@@ -83,7 +83,7 @@
   position: sticky;
   top: 0;
   backdrop-filter: blur(10px);
-  background-color: rgba(15, 32, 39, 0.6); /* semi-transparent dark */
+  background-image: url('./Assets/Navimg.jpeg'); /* semi-transparent dark */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   z-index: 1050;
 }

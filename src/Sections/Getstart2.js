@@ -1,3 +1,4 @@
+import founderImg from '../Assets/founder.jpeg'
 let Getstart = () => {
     return(
       <>
@@ -6,13 +7,13 @@ let Getstart = () => {
     <h2 class="section-title">Meet Our Team</h2>
     <div class="team-grid">
       <div class="team-member">
-        <img src="https://via.placeholder.com/150" alt="Team Member" />
+        <img src={founderImg} alt="Team Member" />
         <h3>Asif Khan</h3>
         <p>CEO & Blockchain Strategist</p>
       </div>
       <div class="team-member">
         <img src="https://via.placeholder.com/150" alt="Team Member" />
-        <h3>Riya Mehta</h3>
+        <h3>Amaan Niyazi</h3>
         <p>Lead Smart Contract Developer</p>
       </div>
       <div class="team-member">
