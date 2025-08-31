@@ -2568,3 +2568,341 @@ form input::placeholder {
   backdrop-filter: blur(10px);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
+
+/* Holdings Dropdown Styles */
+.holdings-dropdown {
+  position: relative;
+}
+
+.holdings-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.holdings-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.dropdown-arrow {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+}
+
+.holdings-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 400px;
+  max-height: 600px;
+  background: rgba(17, 24, 39, 0.95);
+  border: 1px solid rgba(156, 163, 175, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  overflow: hidden;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.holdings-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(156, 163, 175, 0.2);
+  background: rgba(31, 41, 55, 0.5);
+}
+
+.holdings-header h6 {
+  color: #ffffff;
+  margin: 0 0 15px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.portfolio-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.portfolio-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.portfolio-item .label {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.portfolio-item .value {
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.holdings-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 0;
+}
+
+.holding-item {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(156, 163, 175, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.holding-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.holding-item:last-child {
+  border-bottom: none;
+}
+
+.holding-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.coin-symbol {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.coin-quantity {
+  font-size: 14px;
+  color: #9ca3af;
+  font-family: 'Courier New', monospace;
+}
+
+.holding-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-row .label {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.detail-row .value {
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.no-holdings {
+  padding: 40px 20px;
+  text-align: center;
+  color: #9ca3af;
+}
+
+.no-holdings p {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  color: #d1d5db;
+}
+
+.no-holdings small {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* Buy/Sell Form Enhancements */
+.buy-sell {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+.buy-sell-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.buy-box, .sell-box {
+  background: rgba(17, 24, 39, 0.8);
+  border: 1px solid rgba(156, 163, 175, 0.2);
+  border-radius: 16px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.buy-box h3, .sell-box h3 {
+  color: #ffffff;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.buy-box form, .sell-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.buy-box label, .sell-box label {
+  color: #d1d5db;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.buy-box select, .sell-box select,
+.buy-box input, .sell-box input {
+  background: rgba(31, 41, 55, 0.8);
+  border: 1px solid rgba(156, 163, 175, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #ffffff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.buy-box select:focus, .sell-box select:focus,
+.buy-box input:focus, .sell-box input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.holding-info {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  text-align: center;
+  color: #22c55e;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.estimate {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  text-align: center;
+  color: #3b82f6;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0;
+}
+
+.message {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 14px;
+}
+
+.message.success {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.message.error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.buy-box .btn, .sell-box .btn {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.buy-box .btn:hover, .sell-box .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+.buy-box .btn:disabled, .sell-box .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.sell-box .btn.alt {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.sell-box .btn.alt:hover {
+  box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .buy-sell-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .holdings-dropdown-menu {
+    width: 320px;
+    right: -50px;
+  }
+  
+  .portfolio-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Text Colors for Profit/Loss */
+.text-success {
+  color: #22c55e !important;
+}
+
+.text-danger {
+  color: #ef4444 !important;
+}
+
+.text-muted {
+  color: #9ca3af !important;
+}
