@@ -35,16 +35,16 @@ const CandleChart = ({ data, symbol, onClose }) => {
             c: item.close
           })),
           color: {
-            up: 'rgba(34, 197, 94, 0.9)',
-            down: 'rgba(239, 68, 68, 0.9)',
+            up: 'rgba(34, 197, 94, 0.95)',      // Brighter green for bullish candles
+            down: 'rgba(239, 68, 68, 0.95)',    // Brighter red for bearish candles
             unchanged: 'rgba(156, 163, 175, 0.9)',
           },
           borderColor: {
-            up: 'rgba(34, 197, 94, 1)',
-            down: 'rgba(239, 68, 68, 1)',
+            up: 'rgba(34, 197, 94, 1)',         // Solid green border
+            down: 'rgba(239, 68, 68, 1)',       // Solid red border
             unchanged: 'rgba(156, 163, 175, 1)',
           },
-          borderWidth: 0.5, // Reduced width for thinner candlesticks
+          borderWidth: 1.2,                      // Increased border width for better separation
           borderSkipped: false
         }]
       },
@@ -137,11 +137,16 @@ const CandleChart = ({ data, symbol, onClose }) => {
             display: false
           }
         },
-        // Ensure proper candlestick rendering with reduced width
+        // Ensure proper candlestick rendering with better separation
         elements: {
           candlestick: {
-            borderWidth: 0.5,
-            borderSkipped: false
+            borderWidth: 1.2,
+            borderSkipped: false,
+            backgroundColor: {
+              up: 'rgba(34, 197, 94, 0.8)',      // Semi-transparent green fill
+              down: 'rgba(239, 68, 68, 0.8)',    // Semi-transparent red fill
+              unchanged: 'rgba(156, 163, 175, 0.8)',
+            }
           }
         }
       }
