@@ -1,123 +1,87 @@
+import { useState, useEffect } from "react";
+import cryptoService from "../services/cryptoService";
+import { formatPrice, formatPercentChange, getPriceChangeClass } from "../utils/cryptoUtils";
+import ChartModal from "../components/ChartModal";
+
 let Topcoins = () => {
+  const [coins, setCoins] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedCoin, setSelectedCoin] = useState(null);
+
+  useEffect(() => {
+    const fetchTopCoins = async () => {
+      try {
+        setLoading(true);
+        const data = await cryptoService.getLatestListings(10);
+        setCoins(data);
+      } catch (error) {
+        console.error("Error fetching top coins:", error);
+        // Fallback to empty array if API fails
+        setCoins([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTopCoins();
+
+    // Set up refresh interval (every 60 seconds)
+    const refreshInterval = setInterval(fetchTopCoins, 60000);
+    return () => clearInterval(refreshInterval);
+  }, []);
+
+  // Function to get logo URL based on symbol
+  const getCoinLogo = (symbol) => {
+    return `https://cryptologos.cc/logos/${symbol.toLowerCase()}-${symbol.toLowerCase()}-logo.png`;
+  };
+
   return (
    <>
+   {selectedCoin && (
+      <ChartModal 
+        symbol={selectedCoin} 
+        onClose={() => setSelectedCoin(null)} 
+      />
+    )}
    <section className="top-ten-coins">
   <div className="container">
     <h2 className="section-title">Top 10 Performing Coins</h2>
-    <div className="top-ten-grid">
-
-      {/* Repeat for each coin */}
-      <div className="coin-item">
-        <div className="coin-info">
-          <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin"/>
-          <div>
-            <h3>Bitcoin (BTC)</h3>
-            <p className="change up">+2.34%</p>
-          </div>
-        </div>
-        <p className="price">$29,430.21</p>
+    
+    {loading ? (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Loading top coins...</p>
       </div>
-
-      <div className="coin-item">
-        <div className="coin-info">
-          <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="Ethereum"/>
-          <div>
-            <h3>Ethereum (ETH)</h3>
-            <p className="change up">+1.89%</p>
-          </div>
-        </div>
-        <p className="price">$1,945.67</p>
+    ) : (
+      <div className="top-ten-grid">
+        {coins.map((coin, index) => {
+          const percentChange = coin.quote.USD.percent_change_24h;
+          const isUp = percentChange >= 0;
+          
+          return (
+            <div className="coin-item" key={coin.id} onClick={() => setSelectedCoin(coin.symbol)}>
+              <div className="coin-info">
+                <img 
+                  src={getCoinLogo(coin.symbol.toLowerCase())} 
+                  alt={coin.name}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "https://via.placeholder.com/32x32?text=" + coin.symbol;
+                  }}
+                />
+                <div>
+                  <h3>{coin.name} ({coin.symbol})</h3>
+                  <p className={`change ${getPriceChangeClass(percentChange)}`}>
+                    {formatPercentChange(percentChange)}
+                  </p>
+                </div>
+              </div>
+              <p className="price">{formatPrice(coin.quote.USD.price)}</p>
+            </div>
+          );
+        })}
       </div>
-
-      <div className="coin-item">
-        <div className="coin-info">
-          <img src="https://cryptologos.cc/logos/solana-sol-logo.png" alt="Solana"/>
-          <div>
-            <h3>Solana (SOL)</h3>
-            <p className="change up">+3.95%</p>
-          </div>
-        </div>
-        <p className="price">$86.23</p>
-      </div>
-
-      <div className="coin-item">
-        <div className="coin-info">
-          <img src="https://cryptologos.cc/logos/avalanche-avax-logo.png" alt="Avalanche"/>
-          <div>
-            <h3>Avalanche (AVAX)</h3>
-            <p className="change up">+6.41%</p>
-          </div>
-        </div>
-        <p className="price">$34.12</p>
-      </div>
-
-      <div className="coin-item">
-        <div className="coin-info">
-          <img src="https://cryptologos.cc/logos/polygon-matic-logo.png" alt="Polygon"/>
-          <div>
-            <h3>Polygon (MATIC)</h3>
-            <p className="change up">+5.20%</p>
-          </div>
-        </div>
-        <p className="price">$0.87</p>
-      </div>
-
-      <div className="coin-item">
-        <div className="coin-info">
-          <img src="https://cryptologos.cc/logos/litecoin-ltc-logo.png" alt="Litecoin"/>
-          <div>
-            <h3>Litecoin (LTC)</h3>
-            <p className="change up">+2.76%</p>
-          </div>
-        </div>
-        <p className="price">$78.45</p>
-      </div>
-
-      <div className="coin-item">
-        <div className="coin-info">
-          <img src="https://cryptologos.cc/logos/cardano-ada-logo.png" alt="Cardano"/>
-          <div>
-            <h3>Cardano (ADA)</h3>
-            <p className="change up">+0.87%</p>
-          </div>
-        </div>
-        <p className="price">$0.29</p>
-      </div>
-
-      <div className="coin-item">
-        <div className="coin-info">
-          <img src="https://cryptologos.cc/logos/chainlink-link-logo.png" alt="Chainlink"/>
-          <div>
-            <h3>Chainlink (LINK)</h3>
-            <p className="change up">+4.10%</p>
-          </div>
-        </div>
-        <p className="price">$12.34</p>
-      </div>
-
-      <div className="coin-item">
-        <div className="coin-info">
-          <img src="https://cryptologos.cc/logos/uniswap-uni-logo.png" alt="Uniswap"/>
-          <div>
-            <h3>Uniswap (UNI)</h3>
-            <p className="change up">+3.75%</p>
-          </div>
-        </div>
-        <p className="price">$6.57</p>
-      </div>
-
-      <div className="coin-item">
-        <div className="coin-info">
-          <img src="https://cryptologos.cc/logos/arbitrum-arb-logo.png" alt="Arbitrum"/>
-          <div>
-            <h3>Arbitrum (ARB)</h3>
-            <p className="change up">+5.95%</p>
-          </div>
-        </div>
-        <p className="price">$1.12</p>
-      </div>
-
-    </div>
+    )}
   </div>
 </section>
    </>             
