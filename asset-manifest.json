@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/CryptoX/static/css/main.a7a82843.css",
-    "main.js": "/CryptoX/static/js/main.136cfefe.js",
+    "main.css": "/CryptoX/static/css/main.c4a79d49.css",
+    "main.js": "/CryptoX/static/js/main.a5431dca.js",
     "static/js/453.28c29a20.chunk.js": "/CryptoX/static/js/453.28c29a20.chunk.js",
     "static/media/founder.jpeg": "/CryptoX/static/media/founder.7bd2f7a290b1b0528453.jpeg",
     "index.html": "/CryptoX/index.html",
-    "main.a7a82843.css.map": "/CryptoX/static/css/main.a7a82843.css.map",
-    "main.136cfefe.js.map": "/CryptoX/static/js/main.136cfefe.js.map",
+    "main.c4a79d49.css.map": "/CryptoX/static/css/main.c4a79d49.css.map",
+    "main.a5431dca.js.map": "/CryptoX/static/js/main.a5431dca.js.map",
     "453.28c29a20.chunk.js.map": "/CryptoX/static/js/453.28c29a20.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a7a82843.css",
-    "static/js/main.136cfefe.js"
+    "static/css/main.c4a79d49.css",
+    "static/js/main.a5431dca.js"
   ]
 }
