@@ -3,18 +3,33 @@ import cryptoService from "../services/cryptoService";
 import { formatPrice, formatPercentChange, getCoinSymbol, getCoinColor, getPriceChangeClass } from "../utils/cryptoUtils";
 import ChartModal from "../components/ChartModal";
 
+// Format time for last updated display
+const formatLastUpdated = (date) => {
+  if (!date) return "";
+  
+  const now = new Date();
+  const diffSeconds = Math.floor((now - date) / 1000);
+  
+  if (diffSeconds < 60) return `${diffSeconds}s ago`;
+  if (diffSeconds < 3600) return `${Math.floor(diffSeconds / 60)}m ago`;
+  return `${Math.floor(diffSeconds / 3600)}h ago`;
+};
+
 let Livemarket = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [marketData, setMarketData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCoin, setSelectedCoin] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState(null);
+  const [updateStatus, setUpdateStatus] = useState("idle");
   const sectionRef = useRef(null);
+  const updateTimerRef = useRef(null);
 
   // Fetch cryptocurrency data
   useEffect(() => {
     const fetchCryptoData = async () => {
       try {
-        setLoading(true);
+        setUpdateStatus("updating");
         const data = await cryptoService.getLatestListings(4);
         
         // Transform API data to component format
@@ -29,6 +44,16 @@ let Livemarket = () => {
         }));
         
         setMarketData(formattedData);
+        setLastUpdated(new Date());
+        setUpdateStatus("updated");
+        
+        // Set timer to change status to stale after 25 seconds
+        if (updateTimerRef.current) {
+          clearTimeout(updateTimerRef.current);
+        }
+        updateTimerRef.current = setTimeout(() => {
+          setUpdateStatus("stale");
+        }, 25000);
       } catch (error) {
         console.error("Error fetching market data:", error);
         // Fallback to default data if API fails
@@ -72,13 +97,16 @@ let Livemarket = () => {
         ]);
       } finally {
         setLoading(false);
+        if (updateStatus === "updating") {
+          setUpdateStatus("error");
+        }
       }
     };
 
     fetchCryptoData();
 
-    // Set up refresh interval (every 60 seconds)
-    const refreshInterval = setInterval(fetchCryptoData, 60000);
+    // Set up refresh interval (every 30 seconds)
+    const refreshInterval = setInterval(fetchCryptoData, 30000);
     return () => clearInterval(refreshInterval);
   }, []);
 
@@ -106,6 +134,33 @@ let Livemarket = () => {
   }, []);
 
 
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (updateTimerRef.current) {
+        clearTimeout(updateTimerRef.current);
+      }
+    };
+  }, []);
+
+  // Get status indicator classes and text
+  const getStatusIndicator = () => {
+    switch (updateStatus) {
+      case "updating":
+        return { className: "status-updating", text: "Updating..." };
+      case "updated":
+        return { className: "status-live", text: "Live" };
+      case "stale":
+        return { className: "status-stale", text: "Needs refresh" };
+      case "error":
+        return { className: "status-error", text: "Update failed" };
+      default:
+        return { className: "", text: "" };
+    }
+  };
+
+  const statusIndicator = getStatusIndicator();
+
   return(
     <>
       {selectedCoin && (
@@ -116,9 +171,16 @@ let Livemarket = () => {
       )}
       <section className="market-stats" ref={sectionRef}>
         <div className="container">
-          <h2 className={`section-title ${isVisible ? "fade-in" : ""}`}>
-            <span className="text-gradient">Live</span> Market Stats
-          </h2>
+          <div className="market-header">
+            <h2 className={`section-title ${isVisible ? "fade-in" : ""}`}>
+              <span className="text-gradient">Live</span> Market Stats
+            </h2>
+            <div className={`realtime-status ${statusIndicator.className}`}>
+              <div className="pulse-dot"></div>
+              <span>{statusIndicator.text}</span>
+              {lastUpdated && <span className="last-updated">{formatLastUpdated(lastUpdated)}</span>}
+            </div>
+          </div>
           <div className="stats-grid">
             {marketData.map((coin, index) => (
               <div 

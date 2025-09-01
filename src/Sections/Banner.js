@@ -45,8 +45,17 @@ let Banner = () => {
         
         // Set default selected coins if they exist in the data
         if (data.length > 0) {
-          setSelectedBuyCoin(data[0].symbol);
-          setSelectedSellCoin(data[0].symbol);
+          // Keep current selections if they exist in the new data
+          const buyCoinExists = data.some(coin => coin.symbol === selectedBuyCoin);
+          const sellCoinExists = data.some(coin => coin.symbol === selectedSellCoin);
+          
+          if (!buyCoinExists) {
+            setSelectedBuyCoin(data[0].symbol);
+          }
+          
+          if (!sellCoinExists) {
+            setSelectedSellCoin(data[0].symbol);
+          }
         }
       } catch (error) {
         console.error("Error fetching crypto data:", error);
@@ -54,10 +63,22 @@ let Banner = () => {
         const fallbackPrices = {
           BTC: 29430.21,
           ETH: 1945.67,
-          SOL: 86.23
+          SOL: 86.23,
+          ADA: 0.45,
+          DOT: 5.78
         };
         pricesRef.current = fallbackPrices;
         updateCurrentPrices(fallbackPrices);
+        
+        // Create fallback crypto data for dropdowns
+        const fallbackCryptoData = [
+          { symbol: 'BTC', name: 'Bitcoin', quote: { USD: { price: fallbackPrices.BTC } } },
+          { symbol: 'ETH', name: 'Ethereum', quote: { USD: { price: fallbackPrices.ETH } } },
+          { symbol: 'SOL', name: 'Solana', quote: { USD: { price: fallbackPrices.SOL } } },
+          { symbol: 'ADA', name: 'Cardano', quote: { USD: { price: fallbackPrices.ADA } } },
+          { symbol: 'DOT', name: 'Polkadot', quote: { USD: { price: fallbackPrices.DOT } } }
+        ];
+        setCryptoData(fallbackCryptoData);
       } finally {
         setLoading(false);
       }
@@ -98,8 +119,8 @@ let Banner = () => {
   const handleBuySubmit = async (e) => {
     e.preventDefault();
     
-    if (!buyAmount || parseFloat(buyAmount) <= 0) {
-      setBuyMessage('Please enter a valid amount');
+    if (!buyAmount || buyAmount === '' || parseFloat(buyAmount) <= 0) {
+      setBuyMessage('Please enter a valid amount greater than 0');
       return;
     }
 
@@ -138,8 +159,8 @@ let Banner = () => {
   const handleSellSubmit = async (e) => {
     e.preventDefault();
     
-    if (!sellAmount || parseFloat(sellAmount) <= 0) {
-      setSellMessage('Please enter a valid quantity');
+    if (!sellAmount || sellAmount === '' || parseFloat(sellAmount) <= 0) {
+      setSellMessage('Please enter a valid quantity greater than 0');
       return;
     }
 
@@ -243,13 +264,26 @@ let Banner = () => {
                 <select 
                   id="buy-coin" 
                   value={selectedBuyCoin}
-                  onChange={(e) => setSelectedBuyCoin(e.target.value)}
+                  onChange={(e) => {
+                    setSelectedBuyCoin(e.target.value);
+                    setBuyAmount('');
+                  }}
                 >
-                  {cryptoData.map(coin => (
-                    <option key={coin.symbol} value={coin.symbol}>
-                      {coin.name} ({coin.symbol}) - {formatPrice(coin.quote.USD.price)}
-                    </option>
-                  ))}
+                  {cryptoData.length > 0 ? (
+                    cryptoData.map(coin => (
+                      <option key={coin.symbol} value={coin.symbol}>
+                        {coin.name} ({coin.symbol}) - {formatPrice(coin.quote.USD.price)}
+                      </option>
+                    ))
+                  ) : (
+                    <>
+                      <option value="BTC">Bitcoin (BTC)</option>
+                      <option value="ETH">Ethereum (ETH)</option>
+                      <option value="SOL">Solana (SOL)</option>
+                      <option value="ADA">Cardano (ADA)</option>
+                      <option value="DOT">Polkadot (DOT)</option>
+                    </>
+                  )}
                 </select>
 
                 <label htmlFor="buy-amount">Amount (USD)</label>
@@ -258,9 +292,18 @@ let Banner = () => {
                   id="buy-amount" 
                   placeholder="$100" 
                   value={buyAmount}
-                  onChange={(e) => setBuyAmount(e.target.value)}
-                  min="1"
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value === '' || parseFloat(value) >= 0) {
+                      setBuyAmount(value);
+                    } else {
+                      setBuyAmount('0');
+                      setBuyMessage('Value adjusted to nearest valid amount: $0');
+                      setTimeout(() => setBuyMessage(''), 3000);
+                    }
+                  }}
                   step="0.01"
+                  noValidate
                 />
 
                 <p className="estimate">
@@ -287,13 +330,26 @@ let Banner = () => {
                 <select 
                   id="sell-coin"
                   value={selectedSellCoin}
-                  onChange={(e) => setSellAmount('')}
+                  onChange={(e) => {
+                    setSelectedSellCoin(e.target.value);
+                    setSellAmount('');
+                  }}
                 >
-                  {cryptoData.map(coin => (
-                    <option key={coin.symbol} value={coin.symbol}>
-                      {coin.name} ({coin.symbol}) - {formatPrice(coin.quote.USD.price)}
-                    </option>
-                  ))}
+                  {cryptoData.length > 0 ? (
+                    cryptoData.map(coin => (
+                      <option key={coin.symbol} value={coin.symbol}>
+                        {coin.name} ({coin.symbol}) - {formatPrice(coin.quote.USD.price)}
+                      </option>
+                    ))
+                  ) : (
+                    <>
+                      <option value="BTC">Bitcoin (BTC)</option>
+                      <option value="ETH">Ethereum (ETH)</option>
+                      <option value="SOL">Solana (SOL)</option>
+                      <option value="ADA">Cardano (ADA)</option>
+                      <option value="DOT">Polkadot (DOT)</option>
+                    </>
+                  )}
                 </select>
 
                 <div className="holding-info">
@@ -301,16 +357,42 @@ let Banner = () => {
                 </div>
 
                 <label htmlFor="sell-amount">Amount (in Coin)</label>
-                <input 
-                  type="number" 
-                  id="sell-amount" 
-                  placeholder="0.01" 
-                  value={sellAmount}
-                  onChange={(e) => setSellAmount(e.target.value)}
-                  min="0.00000001"
-                  max={getCurrentHolding()}
-                  step="0.00000001"
-                />
+                <div className="amount-input-container">
+                  <input 
+                    type="number" 
+                    id="sell-amount" 
+                    placeholder="0.01" 
+                    value={sellAmount}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      const currentHolding = getCurrentHolding();
+                      
+                      if (value === '') {
+                        setSellAmount('');
+                      } else if (parseFloat(value) < 0) {
+                        setSellAmount('0');
+                        setSellMessage('Value adjusted to nearest valid amount: 0');
+                        setTimeout(() => setSellMessage(''), 3000);
+                      } else if (parseFloat(value) > currentHolding) {
+                        setSellAmount(currentHolding.toString());
+                        setSellMessage(`Value adjusted to maximum available: ${currentHolding.toFixed(8)}`);
+                        setTimeout(() => setSellMessage(''), 3000);
+                      } else {
+                        setSellAmount(value);
+                      }
+                    }}
+                    step="0.00000001"
+                    noValidate
+                  />
+                  <button 
+                    type="button" 
+                    className="sell-all-btn" 
+                    onClick={() => setSellAmount(getCurrentHolding().toString())}
+                    disabled={getCurrentHolding() <= 0}
+                  >
+                    Sell All
+                  </button>
+                </div>
 
                 <p className="estimate">
                   You'll receive: <span id="sell-estimate">{sellEstimate}</span>

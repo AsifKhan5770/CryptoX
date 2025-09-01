@@ -2336,10 +2336,8 @@ form input::placeholder {
 }
 
 /* Real-time Chart Indicators */
-.realtime-indicator {
-  position: absolute;
-  top: 16px;
-  right: 16px;
+.realtime-indicator,
+.realtime-status {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -2350,10 +2348,22 @@ form input::placeholder {
   z-index: 10;
 }
 
+.realtime-indicator {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.realtime-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 .pulse-dot {
   width: 8px;
   height: 8px;
-  background-color: #10b981;
   border-radius: 50%;
   animation: pulse 2s infinite;
 }
@@ -2364,6 +2374,48 @@ form input::placeholder {
   color: #10b981;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+.last-updated {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  margin-left: 4px;
+}
+
+/* Status colors */
+.status-live .pulse-dot {
+  background-color: #10b981; /* green */
+}
+
+.status-live span {
+  color: #10b981;
+}
+
+.status-updating .pulse-dot {
+  background-color: #3b82f6; /* blue */
+  animation: pulse 1s infinite;
+}
+
+.status-updating span {
+  color: #3b82f6;
+}
+
+.status-stale .pulse-dot {
+  background-color: #f59e0b; /* amber */
+  animation: pulse 3s infinite;
+}
+
+.status-stale span {
+  color: #f59e0b;
+}
+
+.status-error .pulse-dot {
+  background-color: #ef4444; /* red */
+  animation: none;
+}
+
+.status-error span {
+  color: #ef4444;
 }
 
 /* Pulse Animation */
@@ -2382,8 +2434,22 @@ form input::placeholder {
   }
 }
 
+/* Market header with status indicator */
+.market-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
 /* Responsive design for real-time chart */
 @media (max-width: 768px) {
+  .market-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
   .realtime-chart-header {
     padding: 16px 20px;
     flex-direction: column;
@@ -2682,21 +2748,35 @@ form input::placeholder {
 
 .holding-header {
   display: flex;
-  justify-content: space-between;
+  gap: 8px;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-.coin-symbol {
+.coin-name {
   font-size: 16px;
   font-weight: 700;
   color: #ffffff;
 }
 
+.coin-symbol {
+  font-size: 14px;
+  font-weight: 500;
+  color: #9ca3af;
+}
+
+.holding-quantity-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
 .coin-quantity {
   font-size: 14px;
-  color: #9ca3af;
+  color: #00ffe7;
   font-family: 'Courier New', monospace;
+  font-weight: 600;
 }
 
 .holding-details {
@@ -2791,6 +2871,40 @@ form input::placeholder {
   color: #ffffff;
   font-size: 16px;
   transition: all 0.3s ease;
+}
+
+.amount-input-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.amount-input-container input {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.sell-all-btn {
+  background: rgba(255, 174, 0, 0.2);
+  border: 1px solid rgba(255, 174, 0, 0.4);
+  border-radius: 8px;
+  padding: 0 15px;
+  color: #ffae00;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sell-all-btn:hover {
+  background: rgba(255, 174, 0, 0.3);
+}
+
+.sell-all-btn:disabled {
+  background: rgba(156, 163, 175, 0.1);
+  border-color: rgba(156, 163, 175, 0.2);
+  color: #6b7280;
+  cursor: not-allowed;
 }
 
 .buy-box select:focus, .sell-box select:focus,

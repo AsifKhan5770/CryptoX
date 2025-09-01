@@ -55,6 +55,29 @@ let Navbar = () => {
     if (portfolioValue.totalProfit < 0) return 'text-danger';
     return 'text-muted';
   };
+  
+  // Get coin name from symbol
+  const getCoinName = (symbol) => {
+    const coinNames = {
+      'BTC': 'Bitcoin',
+      'ETH': 'Ethereum',
+      'SOL': 'Solana',
+      'ADA': 'Cardano',
+      'DOT': 'Polkadot',
+      'BNB': 'Binance Coin',
+      'XRP': 'XRP',
+      'DOGE': 'Dogecoin',
+      'USDC': 'USD Coin',
+      'USDT': 'Tether',
+      'MATIC': 'Polygon',
+      'LTC': 'Litecoin',
+      'AVAX': 'Avalanche',
+      'UNI': 'Uniswap',
+      'ARB': 'Arbitrum'
+    };
+    
+    return coinNames[symbol] || symbol;
+  };
 
   return (
     <>
@@ -148,12 +171,20 @@ let Navbar = () => {
                           return (
                             <div key={holding.symbol} className="holding-item">
                               <div className="holding-header">
-                                <span className="coin-symbol">{holding.symbol}</span>
+                                <span className="coin-name">{getCoinName(holding.symbol)}</span>
+                                <span className="coin-symbol">({holding.symbol})</span>
+                              </div>
+                              <div className="holding-quantity-row">
+                                <span className="label">Quantity:</span>
                                 <span className="coin-quantity">{holding.quantity.toFixed(8)}</span>
                               </div>
                               <div className="holding-details">
                                 <div className="detail-row">
-                                  <span className="label">Avg Price:</span>
+                                  <span className="label">Current Price:</span>
+                                  <span className="value">{formatPrice(currentPrice)}</span>
+                                </div>
+                                <div className="detail-row">
+                                  <span className="label">Buying Price:</span>
                                   <span className="value">{formatPrice(holding.averagePrice)}</span>
                                 </div>
                                 <div className="detail-row">
